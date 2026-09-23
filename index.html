@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>中医体质测试 - 测出你的养生体质</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+
+  <!-- 欢迎页 -->
+  <div id="welcome-page" class="page active">
+    <div class="hero-area">
+      <div class="tcm-icon">
+        <div class="herb-left"></div>
+        <div class="herb-right"></div>
+        <div class="tea-cup">
+          <div class="tea-liquid"></div>
+          <div class="steam s1"></div>
+          <div class="steam s2"></div>
+          <div class="steam s3"></div>
+        </div>
+      </div>
+      <h1 class="title">中医体质测试</h1>
+      <p class="subtitle">9道题测出你的养生体质<br>get专属调理方案</p>
+    </div>
+    <div class="features">
+      <div class="feature-item">
+        <span class="feature-icon">🍵</span>
+        <span>体质茶饮推荐</span>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">👆</span>
+        <span>穴位按摩指南</span>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">🥗</span>
+        <span>饮食调理建议</span>
+      </div>
+    </div>
+    <button class="btn-primary" id="start-btn">开始测试</button>
+    <p class="disclaimer">*本测试仅供参考，不作为医疗诊断依据</p>
+  </div>
+
+  <!-- 测试页 -->
+  <div id="quiz-page" class="page">
+    <div class="quiz-header">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+      <span class="progress-text" id="progress-text">1 / 9</span>
+    </div>
+    <h2 class="question-text" id="question-text"></h2>
+    <div class="options-container" id="options-container"></div>
+  </div>
+
+  <!-- 结果页 -->
+  <div id="result-page" class="page">
+    <div class="result-card" id="result-card">
+      <div class="card-header" id="card-header">
+        <span class="card-label">你的养生体质</span>
+        <div class="tcm-illustration" id="tcm-illustration"></div>
+        <h2 class="tcm-name" id="tcm-name"></h2>
+        <p class="tcm-quote" id="tcm-quote"></p>
+      </div>
+      <div class="card-body">
+        <div class="tag-row" id="tag-row"></div>
+        <p class="tcm-desc" id="tcm-desc"></p>
+        
+        <div class="divider"></div>
+        
+        <div class="advice-section">
+          <div class="advice-item">
+            <span class="advice-icon">🍵</span>
+            <div class="advice-content">
+              <span class="advice-title">养生茶饮</span>
+              <span class="advice-text" id="advice-tea"></span>
+            </div>
+          </div>
+          <div class="advice-item">
+            <span class="advice-icon">👆</span>
+            <div class="advice-content">
+              <span class="advice-title">推荐穴位</span>
+              <span class="advice-text" id="advice-point"></span>
+            </div>
+          </div>
+          <div class="advice-item">
+            <span class="advice-icon">🥗</span>
+            <div class="advice-content">
+              <span class="advice-title">宜吃食物</span>
+              <span class="advice-text" id="advice-food"></span>
+            </div>
+          </div>
+          <div class="advice-item">
+            <span class="advice-icon">⏰</span>
+            <div class="advice-content">
+              <span class="advice-title">作息建议</span>
+              <span class="advice-text" id="advice-sleep"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="stats-row">
+          <div class="stat-item">
+            <span class="stat-number" id="stat-percent">0%</span>
+            <span class="stat-label">匹配度</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" id="stat-ratio">0%</span>
+            <span class="stat-label">同类体质占比</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="footer-text" id="footer-text">我是什么体质？来测测看~</span>
+        <span class="watermark">中医体质测试</span>
+      </div>
+    </div>
+
+    <div class="action-buttons">
+      <button class="btn-primary" id="buddy-btn">找养生搭子</button>
+      <button class="btn-secondary" id="restart-btn">重新测试</button>
+    </div>
+    <p class="share-tip">💡 截图保存这张卡片，发小红书@朋友来测</p>
+  </div>
+
+  <!-- 养生搭子匹配页 -->
+  <div id="buddy-page" class="page">
+    <h2 class="buddy-title">你的养生搭子是谁？</h2>
+    <p class="buddy-subtitle">选一个最像你朋友的体质</p>
+    <div class="buddy-grid" id="buddy-grid"></div>
+    <button class="btn-secondary" id="buddy-back-btn">返回结果</button>
+  </div>
+
+  <!-- 搭子结果页 -->
+  <div id="buddy-result-page" class="page">
+    <div class="buddy-result-card">
+      <h3 class="buddy-result-title">养生搭子匹配度</h3>
+      <div class="buddy-pair">
+        <div class="buddy-side">
+          <div class="buddy-icon" id="my-icon"></div>
+          <span class="buddy-name" id="my-name"></span>
+          <span class="buddy-tag">你</span>
+        </div>
+        <div class="heart-icon">💕</div>
+        <div class="buddy-side">
+          <div class="buddy-icon" id="friend-icon"></div>
+          <span class="buddy-name" id="friend-name"></span>
+          <span class="buddy-tag friend">TA</span>
+        </div>
+      </div>
+      <div class="match-score" id="match-score">0%</div>
+      <div class="match-desc" id="match-desc"></div>
+      <div class="match-advice" id="match-advice"></div>
+    </div>
+    <button class="btn-secondary" id="buddy-restart-btn">再测一个朋友</button>
+  </div>
+
+</div>
+<script src="main.js"></script>
+</body>
+</html>
